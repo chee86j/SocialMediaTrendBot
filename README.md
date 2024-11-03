@@ -42,14 +42,23 @@ This application serves as a Social Media Trend Analyst chatbot AI, leveraging t
 ## Project Structure
 
 ```plaintext
-youtube-trend-bot/
+SocialMediaTrendBot/
 ├── .env                    # Environment variables
-├── server.js               # Main server file
-├── package.json            # Node dependencies and scripts
-├── services/               # External API services
-│   ├── youtubeService.js   # YouTube Data API integration
-│   └── openaiService.js    # OpenAI API integration
-└── README.md               # Project documentation
+├── Dockerfile              # Docker configuration for the app
+├── docker-compose.yml      # Docker Compose configuration for multi-service setup
+├── README.md               # Project documentation
+├── server/                 # Backend folder
+│   ├── server.js           # Main server file
+│   ├── package.json        # Node dependencies and scripts for backend
+│   └── services/           # External API services
+│       ├── youtubeService.js   # YouTube Data API integration
+│       └── openaiService.js    # OpenAI API integration
+└── src/                    # Client folder
+    ├── index.html          # Entry HTML file for React app
+    ├── App.js              # Main App component
+    ├── package.json        # Node dependencies and scripts for frontend
+    └── components/         # React components
+
 ```
 
 ## Setup and Installation

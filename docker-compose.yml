@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+  frontend:
+    build:
+      context: ./src # Points to the frontend directory
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src:/src # Mounts the src directory to the container
+      - /src/node_modules # Ignores node_modules to prevent conflicts
+    environment:
+      - REACT_APP_API_URL=http://localhost:3000/api
+
+  backend:
+    build:
+      context: ./server # Points to the backend directory
+      dockerfile: Dockerfile
+    ports:
+      - "5000:3000"
+    volumes:
+      - ./server:/server # Mounts the server directory to the container
+      - /server/node_modules # Ignores node_modules to prevent conflicts
+    environment:
+      - PORT=3000
+      - NODE_ENV=development
+      - DATABASE_URL=postgres://postgres:password@db:5432/socialmedia
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=socialmedia
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
