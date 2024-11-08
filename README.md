@@ -93,3 +93,10 @@ SCRAPER_MODE=headless  # Options: headless or visible (for Selenium browser mode
 
 1. ** Google Trends Scraping: Uses Selenium for scraping Google Trends in either headless or visible mode. Ensure Chrome and chromedriver are installed if running locally. **
 2. ** Environment Variables: All required keys and URLs should be stored in the .env file in the root directory. **
+3. \*\* Docker Troubleshooting: If you encounter issues with Docker, try the following commands to rebuild and restart the containers:
+
+`docker-compose down --volumes --remove-orphans
+docker-compose build --no-cache
+docker-compose up
+`
+\*\*
