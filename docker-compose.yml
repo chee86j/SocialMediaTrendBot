@@ -3,15 +3,15 @@ version: "3"
 services:
   frontend:
     build:
-      context: ./src # Points to the frontend directory
+      context: ./client # Build context points to client directory
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
     volumes:
-      - ./src:/src # Mounts the src directory to the container
-      - /src/node_modules # Ignores node_modules to prevent conflicts
+      - ./client:/app # Mount the entire client folder to /app in the container
+      - /app/node_modules # Ignore node_modules to prevent conflicts
     environment:
-      - REACT_APP_API_URL=http://localhost:3000/api
+      - REACT_APP_API_URL=http://localhost:5000/api
 
   backend:
     build:
@@ -20,12 +20,14 @@ services:
     ports:
       - "5000:3000"
     volumes:
-      - ./server:/server # Mounts the server directory to the container
+      - ./server:/server # Mounts the server directory to /server in the container
       - /server/node_modules # Ignores node_modules to prevent conflicts
     environment:
       - PORT=3000
       - NODE_ENV=development
       - DATABASE_URL=postgres://postgres:password@db:5432/socialmedia
+      - GOOGLE_TRENDS_API_KEY=${GOOGLE_TRENDS_API_KEY}
+      - SCRAPER_MODE=${SCRAPER_MODE}
 
   db:
     image: postgres:13
