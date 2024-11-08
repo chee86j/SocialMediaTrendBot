@@ -2,7 +2,7 @@
 
 ## Overview
 
-This application serves as a Social Media Trend Analyst chatbot AI, leveraging the OpenAI API to track, analyze, and report on trending video content across platforms. Initially, the app focuses on YouTube, with plans to expand to other social platforms like Instagram, Twitter, Reddit, Facebook, Pinterst, and TikTok. The AI chatbot provides insights on video trends based on niche topics, hashtags, and engagement metrics, acting as a virtual analyst.
+This application is a Social Media Trend Analyst chatbot AI that leverages the Google Trends API (scraped using Selenium) and the OpenAI API to track, analyze, and report on trending content across platforms. The app initially focuses on Google Trends data, with plans to expand to other social platforms like YouTube, Instagram, Twitter, Reddit, Facebook, Pinterest, and TikTok. The AI chatbot provides insights on video and content trends based on niche topics, hashtags, and engagement metrics, acting as a virtual analyst.
 
 ## Table of Contents
 
@@ -19,7 +19,7 @@ This application serves as a Social Media Trend Analyst chatbot AI, leveraging t
 
 ### MVP Features
 
-1. **Platform Analysis (YouTube)**: Fetch and analyze trending videos based on user-defined keywords.
+1. **Google Trends Analysis**: Scrape and analyze trending data on Google Trends based on user-defined keywords.
 2. **Trend Insights**: Use OpenAI API to analyze content and generate trend insights.
 3. **User-Defined Metrics**: Customize search based on specific keywords, comment count, likes, and engagement metrics.
 
@@ -32,51 +32,64 @@ This application serves as a Social Media Trend Analyst chatbot AI, leveraging t
 ## Tech Stack
 
 - **Backend**: Node.js, Express.js
-- **Database**: PostgreSQL (via Prisma ORM)
-- **APIs**: YouTube Data API, OpenAI API
+- **Database**: PostgreSQL
+- **APIs**: Google Trends (via Selenium scraping), OpenAI API
 - **Frontend**: React, Tailwind CSS
 - **Deployment**: Docker
 - **Authentication**: JWT for secure API access
-- **Tools**: Axios, dotenv
+- **Tools**: Axios, dotenv, Selenium for web scraping
 
 ## Project Structure
 
 ```plaintext
 SocialMediaTrendBot/
-├── .env                    # Environment variables
-├── Dockerfile              # Docker configuration for the app
-├── docker-compose.yml      # Docker Compose configuration for multi-service setup
-├── README.md               # Project documentation
-├── server/                 # Backend folder
-│   ├── server.js           # Main server file
-│   ├── package.json        # Node dependencies and scripts for backend
-│   └── services/           # External API services
-│       ├── youtubeService.js   # YouTube Data API integration
-│       └── openaiService.js    # OpenAI API integration
-└── src/                    # Client folder
-    ├── index.html          # Entry HTML file for React app
-    ├── App.js              # Main App component
-    ├── package.json        # Node dependencies and scripts for frontend
-    └── components/         # React components
+├── .env                        # Environment variables
+├── Dockerfile                  # Docker configuration for each service
+├── docker-compose.yml          # Docker Compose configuration for multi-service setup
+├── README.md                   # Project documentation
+├── server/                     # Backend folder
+│   ├── server.js               # Main server file
+│   ├── package.json            # Node dependencies and scripts for backend
+│   ├── services/               # External API services
+│   │   ├── googleTrendsScraper.js  # Selenium-based Google Trends scraping integration
+│   │   └── openaiService.js    # OpenAI API integration
+│   └── database/               # Database configuration and connection
+└── src/                        # Client folder
+    ├── index.html              # Entry HTML file for React app
+    ├── App.js                  # Main App component
+    ├── package.json            # Node dependencies and scripts for frontend
+    └── components/             # React components
 
 ```
 
 ## Setup and Installation
 
 1. ** Clone the repository **
-2. ** Install dependencies **: `npm install`
+2. ** cd SocialMediaTrendBot **
+3. ** cd server then Install dependencies within **: `npm install` \*\*
+4. ** cd ../src then Install dependencies within **: `npm install` \*\*
+5. ** setup Docker by running `docker-compose up --build` **
 
 ## Environment Variables
 
 ** Create an `.env` file in the root directory and add the following environment variables: **
 
 ```plaintext
-YOUTUBE_API_KEY=your_youtube_api_key
+GOOGLE_TRENDS_API_KEY=your_google_trends_api_key
 OPENAI_API_KEY=your_openai_api_key
+REACT_APP_API_URL=http://localhost:5000/api
+DATABASE_URL=postgres://postgres:password@db:5432/socialmedia
 PORT=3000
+SCRAPER_MODE=headless  # Options: headless or visible (for Selenium browser mode)
+
 ```
 
 ## Usage
 
-1. ** Start the server **: `npm start`
-2. ** Access the API **: Open `http://localhost:3000` in your browser
+1. ** Start the Docker containers **: Run `docker-compose up --build` in the root directory \*\*
+2. ** API: Backend API is accessible at `http://localhost:5000/api` **
+
+## Notes
+
+1. ** Google Trends Scraping: Uses Selenium for scraping Google Trends in either headless or visible mode. Ensure Chrome and chromedriver are installed if running locally. **
+2. ** Environment Variables: All required keys and URLs should be stored in the .env file in the root directory. **
