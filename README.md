@@ -2,7 +2,7 @@
 
 ## Overview
 
-This application is a Social Media Trend Analyst chatbot AI that leverages the Google Trends API (scraped using Selenium) and the OpenAI API to track, analyze, and report on trending content across platforms. The app initially focuses on Google Trends data, with plans to expand to other social platforms like YouTube, Instagram, Twitter, Reddit, Facebook, Pinterest, and TikTok. The AI chatbot provides insights on video and content trends based on niche topics, hashtags, and engagement metrics, acting as a virtual analyst.
+Social Media Trend Analyst chatbot  leverages the Google Trends API (scraped using Selenium) and the OpenAI API to track, analyze, and report on trending content across multiple platforms. Currently focused on Google Trends data, the app will expand to analyze content across major social platforms, including YouTube, Instagram, Twitter, Reddit, Facebook, Pinterest, and TikTok. By providing insights on video and content trends based on niche topics, hashtags, and engagement metrics, this AI-powered chatbot helps social media creators strategize and engage audiences more effectively.
 
 ## Table of Contents
 
@@ -100,3 +100,4 @@ docker-compose build --no-cache
 docker-compose up
 `
 \*\*
+/
