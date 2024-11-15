@@ -61,6 +61,17 @@ SocialMediaTrendBot/
     └── components/             # React components
 
 ```
+## Prerequisites
+1. Docker: Ensure Docker is installed. Instructions for different operating systems:
+    https://www.docker.com/get-started/
+    Windows: Requires Windows 10 or later with WSL2 enabled.
+    MacOS: Supports macOS Mojave or later.
+    Linux: Available for most distributions.
+2. Chrome and ChromeDriver: Required for Selenium scraping.
+    https://developer.chrome.com/docs/chromedriver/downloads
+    ChromeDriver Installation: Ensure ChromeDriver matches your Chrome version.
+    Download: ChromeDriver
+    Add ChromeDriver to your system path.
 
 ## Setup and Installation
 
