@@ -90,8 +90,9 @@ GOOGLE_TRENDS_API_KEY=your_google_trends_api_key
 OPENAI_API_KEY=your_openai_api_key
 REACT_APP_API_URL=http://localhost:5000/api
 DATABASE_URL=postgres://postgres:password@db:5432/socialmedia
-PORT=3000
+PORT=5000
 SCRAPER_MODE=headless  # Options: headless or visible (for Selenium browser mode)
+
 
 ```
 

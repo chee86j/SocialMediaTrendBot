@@ -12,11 +12,6 @@ yarn-error.log*
 # Environment Variables
 .env
 
-# Docker files
-docker-compose.override.yml
-Dockerfile
-**/Dockerfile
-
 # Build files
 build/
 dist/
